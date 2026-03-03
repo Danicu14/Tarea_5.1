@@ -1,0 +1,25 @@
+# ============================================
+# Dependencias para Testing
+# Tarea 5.1 - Testing Automatizado
+# ============================================
+
+# Framework de testing principal
+pytest==8.0.0
+pytest-asyncio==0.23.5
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+
+# Cliente de test para FastAPI
+httpx==0.26.0
+
+# Test doubles y mocking
+faker==24.0.0
+freezegun==1.4.0
+
+# Coverage y reporting
+coverage==7.4.1
+
+# Utilidades de testing
+pytest-env==1.1.3
+pytest-timeout==2.2.0
+pytest-xdist==3.5.0  # Para ejecución paralela

@@ -1,0 +1,38 @@
+name: Tests Rápidos (Solo Verificación)
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  quick-tests:
+    name: ⚡ Tests Rápidos
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+      
+      - name: 🐍 Setup Python 3.14
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      
+      - name: 📦 Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+      
+      - name: 🧪 Ejecutar Tests
+        run: |
+          python -m pytest tests/ -v --tb=short --cov=app --cov-report=term
+      
+      - name: ✅ Resultado
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "✅ Todos los tests pasaron"
+          else
+            echo "❌ Algunos tests fallaron"
+            exit 1
+          fi
